@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card">
+                    <div class="Container100">
+                        <div class="ContainerIndent">
+                            <div class="Container100 TexAlCenter"><i class="icon-mountains14 Red Fs130 MarTop20" style="line-height:1 !important;"></i></div>
+                            <h1 class="TexAlCenter Fs40 Red">Venture Documentation</h1>
+                            <div class="EmptyBox40"></div>
+                            <p:panel>
+                                <div class="Fs20 Red">Installation</div>
+                                <p>
+                                    Venture provides a main <i>template.xhtml</i> and additional xhtml fragments for the base layout. These 3 files must be placed under
+                                    WEB-INF folder. Provided empty-page.xhtml is a sample content page using the main template.xhtml that defines "content" as the main ui:define placeholder. Other required resources are the css, js, image and font files that are located
+                                    inside resources/venture-layout folder, simply copy the venture-layout folder to your %WEB-APP-FOLDER%/resources folder so that final path would be %WEB-APP-FOLDER%/venture-layout/. Please
+                                    refer to demo app or maven project of the demo app as the reference.
+                                </p>
+                                <p>
+                                    Theme is a regular PrimeFaces theme and setup is simple as defining primefaces.THEME context parameter in web.xml as "venture", refer to <a class="Blue FontPoppinsBold" href="http://www.primefaces.org/themes">themes page</a> for more information.
+                                </p>
+                                
+                                <div class="Fs20 Red">Background And Topbar Colors</div>
+                                <p>
+                                    Venture Layout has 8 different topbar colors, Yellow, Orange, Aqua, Blue, Red, Green, Purple, Pink. Class name of each alternative to be applied to the h:body component are <span class="FontPoppinsBold Orange">'YellowTopbar', 'OrangeTopbar', 'AquaTopbar', 'BlueTopbar', 'RedTopbar', 'GreenTopbar', 'PurpleTopbar', 'PinkTopbar'</span>. <br/><br/>
+                                    And has 5 different body background colors, Pale Green, Pale Blue, Leaden, Dark, Dark Purple. Class name of each alternative to be applied to the h:body component are <span class="FontPoppinsBold Orange">'PaleGreenBG', 'PaleBlueBG', 'LeadenBG', 'DarkBG', 'DarkPurpleBG'.</span>
+                                </p>
+                                
+                                <div class="Fs20 Red">Menu Modes</div>
+                                <p>
+                                    There are two alternatives for menu orientation, default mode is horizontally tabbed where menu is displayed at the top side of layout, second option
+                                    is overlay menu as a popup.
+                                    Class name to be applied on h:body component for the Popup mode is <span class="FontPoppinsBold Orange"> 'PopupMenu' </span>.
+                                    Also you can use default menu as a fixed menu with adding <span class="FontPoppinsBold Orange"> 'FixedMenu' </span> class to h:body.<br/><br/>
+                                    <span class="Orange FontPoppinsSemiBold">Note : Avoid use FixedMenu class together with PopupMenu class.</span>
+                                </p>
+                                
+                                <div class="Fs20 Red">Core Layout</div>
+                                <p>
+                                    Core Layout is a set of CSS classes used to create responsive grid layouts with additional utilities. Venture uses Core Layout internally, however for grid layout
+                                    you may also choose another utility like <a class="FontPoppinsBold Blue" href="http://www.primefaces.org/showcase/ui/panel/grid.xhtml">Grid CSS</a> or <a class="FontPoppinsBold Blue" href="http://getbootstrap.com/examples/grid/">Bootstrap Grid</a>.
+                                </p>
+                                
+                            </p:panel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

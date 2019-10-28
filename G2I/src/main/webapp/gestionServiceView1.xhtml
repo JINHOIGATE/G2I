@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pri="http://primefaces.org/ui"
+                template="/common.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <div id="content-header">
+            <div id="breadcrumb"> 
+                <a href="index.xhtml" title="Aller à la page d'acceuil" class="tip-bottom"><i class="icon-home"></i> Acceuil</a>
+                <a href="#" title="G2I configuration" class="tip-bottom"><i class="icon-cogs"></i>Gestion des entreprises</a>
+                <a href="#" class="current">Gestion des services d'une entreprise</a>
+            </div>
+        </div>
+
+        <h:form id="form" styleClass="form">
+
+            <!--<pri:messages autoUpdate="true" showDetail="true" closable="true" id="messages"/>-->
+            <pri:growl id="growl" sticky="true" autoUpdate="true" life="0" globalOnly="true" />
+
+            <pri:panel id="basic" footer="Formulaire de gestion des services" header="Formulaire de gestion des services"  style="margin-bottom:20px" styleClass="entreprise">
+
+                <h:panelGrid columns="4" cellpadding="10" cellspacing="10" >
+
+                    <pri:outputLabel value="Entreprise:" for="idUtilisateurE" />
+                    <pri:selectOneListbox  filter="true" scrollHeight="100" style="width: 200px"  id="idUtilisateurE" 
+                                           converter="omnifaces.SelectItemsConverter" 
+                                           value="#{serviceBean.formObject.idUtilisateurE}"  required="true"
+                                           requiredMessage="Veuillez sélectionner une entreprise merci!">
+                        <f:selectItem itemLabel="selectionner une entreprise" itemValue="" noSelectionOption="true"/>
+                        <f:selectItems  value="#{serviceBean.entrepriseList}" var="i" itemLabel="#{i.nomE}" itemValue="#{i}" />
+                        <f:validateLength minimum="1"/>
+                    </pri:selectOneListbox>
+
+                    <pri:outputLabel value="NomService:" for="nomService" />
+                    <pri:inputText placeholder="ex:comptabilité" id="nomService" value="#{serviceBean.formObject.nomService}"
+                                   required="true" requiredMessage="Veuillez renseigner correctement le nom du service!">
+                        <f:validateLength minimum="3" maximum="80"/>
+                    </pri:inputText>
+
+
+                    <pri:outputLabel value="DescriptionService:" for="descriptionService" />
+                    <pri:inputTextarea  id="descriptionService" value="#{serviceBean.formObject.descriptionService}" title="DescriptionService" />
+
+                    <pri:outputLabel value="Responsable:" for="responsable" />
+                    <pri:inputText placeholder="Nom du responsable" id="responsable" 
+                                   value="#{serviceBean.formObject.responsable}" 
+                                   required="true" requiredMessage="Veuillez renseigner correctement le nom du responsable!">
+                        <f:validateLength minimum="3" maximum="60" />
+                    </pri:inputText>
+
+                    <center>
+                        <h:panelGrid columns="2" cellpadding="10" cellspacing="10">
+                            <pri:commandButton value="Valider" id="valide"  update="form" actionListener="#{serviceBean.enregistrer()}" styleClass="ui-priority-primary" />
+                            <pri:commandButton value="Annuler" id="annuler" update="@(.entreprise)"  actionListener="#{serviceBean.rafraichir()}"  />
+                        </h:panelGrid>
+                    </center>
+                </h:panelGrid>
+
+
+            </pri:panel>
+
+            <h:panelGrid columns="1" cellpadding="1" cellspacing="10">
+                <pri:dataTable id="tbl" var="item" value="#{serviceBean.serviceList}" scrollable="true" paginatorPosition="top"
+                               paginator="true" rows="4"  emptyMessage="Aucun compte entreprise"
+                               selectionMode="single" selection="#{serviceBean.selectObject}" rowKey="#{item.codeService}" styleClass="data"
+                               resizableColumns="true"  >
+
+                    <pri:ajax event="rowDblselect" update="@(.entreprise)" listener="#{serviceBean.rowSelect()}"/>
+
+                    <f:facet name="header">
+                        <h:outputText value="Liste des services" style="font-family: Gill, Helvetica, sans-serif;
+                                      font-size: 20px; font-style: normal; color: #ffffff"/>
+                    </f:facet>
+
+                    <pri:column  headerText="Code Service">
+                        <center>
+                            <pri:outputLabel value="#{item.codeService}" />
+                        </center>
+                    </pri:column>
+                    <pri:column filterBy="#{item.nomService}" sortBy="#{item.nomService}" headerText="nom Service">
+                        <center>
+                            <pri:outputLabel value="#{item.nomService}" />
+                        </center>
+                    </pri:column>
+
+                    <pri:column filterBy="#{item.responsable}" sortBy="#{item.responsable}">
+                        <f:facet name="header">
+                            <h:outputText value="Responsable"/>
+                        </f:facet>
+                        <center>
+                            <h:outputText value="#{item.responsable}"  > </h:outputText>
+                        </center>
+                    </pri:column>
+
+                    <pri:column filterBy="#{item.descriptionService}" sortBy="#{item.descriptionService}">
+                        <f:facet name="header">
+                            <h:outputText value="description Service" />
+                        </f:facet>
+                        <center>
+                            <h:outputText value="#{item.descriptionService}"  > </h:outputText>
+                        </center>
+                    </pri:column>
+
+                    <pri:column filterBy="#{item.idUtilisateurE.nomE}" sortBy="#{item.idUtilisateurE.nomE}">
+                        <f:facet name="header">
+                            <h:outputText value="Entreprise" />
+                        </f:facet>
+                        <center>
+
+                            <h:outputText value="#{item.idUtilisateurE.nomE}"  > </h:outputText>
+                        </center>
+                    </pri:column>
+                </pri:dataTable>
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+

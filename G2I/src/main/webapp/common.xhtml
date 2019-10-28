@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Gestion des Interventions</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet name="css/monCss.css"/>
+        <h:outputStylesheet name="css/bootstrap.min.css" />
+        <h:outputStylesheet name="css/bootstrap-responsive.min.css"/>
+        <h:outputStylesheet name="css/fullcalendar.css"/>
+        <h:outputStylesheet name="css/matrix-style.css" />
+        <h:outputStylesheet name="css/matrix-media.css"/>
+        <h:outputStylesheet name="css/font-awesome.css"/>
+        <h:outputStylesheet name="css/jquery.gritter.css" />
+        
+       <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'></link>-->
+    </h:head>
+
+    <h:body>
+
+        <!--Header-part-->
+        <div id="header" >
+            <h1><a href="dashboard.html" >GESTION DES INTERVENTIONS ( G2I) </a></h1>
+        </div>  
+        <!--close-Header-part--> 
+
+
+        <!--top-Header-menu-->
+        <div id="user-nav" class="navbar navbar-inverse">
+            <h:form>
+                <ul class="nav">
+                    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Bienvenue </span><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="icon-user"></i> Mon Profil</a></li>
+                            <li class="divider"></li>
+                            <li><h:commandLink action="#{logoutManagedBean.deconnexionUser()}" ><i class="icon-signout"></i> <span>Deconnexion</span></h:commandLink></li>
+                        </ul>
+                    </li>
+                </ul>
+            </h:form>
+        </div>
+        <!--close-top-Header-menu-->
+
+        <!--start-top-serch-->
+        <div id="search">
+            <input type="text" placeholder="Rechercher ici..."/>
+            <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+        </div>
+        <!--close-top-search-->
+
+        <!--sidebar-menu-->
+        <ui:include src="includes/sidebar-menu.xhtml" />
+        <!--sidebar-menu-->
+
+        <!--main-container-part-->
+
+        <div id="content">
+            <!--breadcrumbs-->
+            <ui:insert name="content"/>
+<!--                <div id="content-header">
+                    <div id="breadcrumb"> <a href="common.xhtml" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Tableau de Bord</a></div>
+                </div>-->
+            <!--</ui:insert>-->
+            <!--End-breadcrumbs-->
+        </div>
+
+        <!--end-main-container-part-->
+
+        <!--Footer-part-->
+
+        <div class="row-fluid">
+            <div id="footer" class="span12" style="color: yellow; size: portrait; font-family: Helvetica, Verdana, sans-serif; 
+font-size: 15px" > copyright@gestion des interventions ipsofts 2017 <a href="http://themedesigner.in"></a> </div>
+        </div>
+
+        <!--end-Footer-part-->
+
+        <script src="https://cdn.jsdelivr.net/jquery/3.2.1/jquery.min.js"></script> 
+        <script src="./resources/js/excanvas.min.js"></script> 
+        <script src="./resources/js/jquery.ui.custom.js"></script> 
+        <script src="./resources/js/bootstrap.min.js"></script> 
+        <script src="./resources/js/jquery.flot.min.js"></script> 
+        <script src="./resources/js/jquery.flot.resize.min.js"></script> 
+        <script src="./resources/js/jquery.peity.min.js"></script> 
+        <script src="./resources/js/fullcalendar.min.js"></script> 
+        <script src="./resources/js/matrix.js"></script> 
+        <script src="./resources/js/matrix.dashboard.js"></script> 
+        <script src="./resources/js/jquery.gritter.min.js"></script> 
+        <script src="./resources/js/matrix.chat.js"></script> 
+        <script src="./resources/js/jquery.validate.js"></script> 
+        <script src="./resources/js/matrix.form_validation.js"></script> 
+        <script src="./resources/js/jquery.wizard.js"></script> 
+        <script src="./resources/js/jquery.uniform.js"></script> 
+        <script src="./resources/js/select2.min.js"></script> 
+        <script src="./resources/js/matrix.popover.js"></script> 
+        <script src="./resources/js/jquery.dataTables.min.js"></script> 
+        <script src="./resources/js/matrix.tables.js"></script>
+
+        <script type="text/javascript">
+            // This function is called from the pop-up menus to transfer to
+            // a different page. Ignore if the value returned is a null string:
+            function goPage(newURL) {
+
+                // if url is empty, skip the menu dividers and reset the menu selection to default
+                if (newURL != "") {
+
+                    // if url is "-", it is this page -- reset the menu:
+                    if (newURL == "-") {
+                        resetMenu();
+                    }
+                    // else, send page to designated URL            
+                    else {
+                        document.location.href = newURL;
+                    }
+                }
+            }
+
+            // resets the menu selection upon entry to this page:
+            function resetMenu() {
+                document.gomenu.selector.selectedIndex = 2;
+            }
+        </script>
+        <ui:insert name="javS">
+            
+        </ui:insert>
+    </h:body>
+</ui:composition>

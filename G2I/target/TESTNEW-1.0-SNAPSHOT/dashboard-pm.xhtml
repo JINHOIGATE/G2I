@@ -1,0 +1,319 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+
+        <div class="Container100">
+            <div class="Card">
+
+                <div class="Container50 NoIndent Responsive50 ui-fluid">
+                    <div class="Container70 SmallIndent Responsive50">
+                        <p:inputText placeholder="Search Criteria"/>
+                    </div>
+                    <div class="Container30 SmallIndent Responsive50">
+                        <p:commandButton type="button" value="Search In Projects" styleClass="BlueButton"/>
+                    </div>
+                </div>
+
+                <div class="Container50 SmallIndent Responsive50 TexAlRight">
+                    <p:commandButton type="button" value="Active Projects" styleClass="PurpleButton MarBot10"/>
+                    <p:commandButton type="button" value="Delayed Projects" styleClass="PinkButton MarBot10"/>
+                    <p:commandButton type="button" value="Upcoming Projects" styleClass="BlueButton MarBot10"/>
+                    <p:button icon="fa fa-plus Fs16 White" styleClass="GreenButton MarBot10"/>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="Container100 NoIndent Flex FlexWrap">
+
+            <!-- Left Side -->
+            <div class="Container50 Responsive100 Flex">
+                <div class="Card" style="padding:30px;">
+                    <div class="CardBigTopic Opac80">Venture Delayed Projects</div>
+                    <div class="FontPoppinsLight Fs24 Red">Titan Project <p:inputSwitch onLabel="on" offLabel="off" class="Fright"/></div>
+
+                    <style>
+                        .timeline{border-left:solid 1px #d0d6d9; margin:0px 0px 0px 20px; padding:10px 0px 0px;}
+                        .timeline li{overflow:hidden; line-height:14px; padding:20px;}
+                        .timeline li img{margin-right:10px; margin-left:-33px; position:absolute;}
+                    </style>
+                    <div class="Container33 Responsive ui-fluid">
+                        <div class="Card AquaBack">
+                            <span class="FontPoppinsSemiBold Fs14 White">Open Tasks</span>
+                            <span class="FontPoppinsLight Fs24 Opac70 Fright White">2331</span>
+                        </div>
+                        <ul class="timeline">
+                            <li>
+                                <h:graphicImage name="images/dot-blue.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Improvements of teamwork</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-blue.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Recurring Tasks On Calendar</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-blue.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Font Icons metrics resizing</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-blue.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Improvements of CSS And JS Files</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-blue.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Development Of Venture Timeline Structure</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="EmptyBox10"></div>
+                        <p:commandButton type="button" value="Load More" styleClass="GrayButton"/>
+                    </div>
+
+                    <div class="Container33 Responsive ui-fluid">
+                        <div class="Card OrangeBack">
+                            <span class="FontPoppinsSemiBold Fs14 White">In Progress</span>
+                            <span class="FontPoppinsLight Fs24 Opac70 Fright White">34</span>
+                        </div>
+                        <ul class="timeline">
+                            <li>
+                                <h:graphicImage name="images/dot-orange.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Improvements of teamwork</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-orange.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Recurring Tasks On Calendar</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-orange.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Font Icons metrics resizing</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-orange.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Improvements of CSS And JS Files</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-orange.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Development Of Venture Timeline Structure</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="EmptyBox10"></div>
+                        <p:commandButton type="button" value="Load More" styleClass="GrayButton"/>
+                    </div>
+
+                    <div class="Container33 Responsive ui-fluid">
+                        <div class="Card GreenBack">
+                            <span class="FontPoppinsSemiBold Fs14 White">Done</span>
+                            <span class="FontPoppinsLight Fs24 Opac70 Fright White">755</span>
+                        </div>
+                        <ul class="timeline">
+                            <li>
+                                <h:graphicImage name="images/dot-green.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Improvements of teamwork</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-green.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Recurring Tasks On Calendar</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-green.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Font Icons metrics resizing</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-green.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Improvements of CSS And JS Files</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/dot-green.svg" styleClass="Fleft" library="venture-layout"/>
+                                <div class="DispInlBlock Fleft">
+                                    <div class="EmptyBox5"></div>
+                                    <span class="FontPoppinsLight Fs12 Leaden DispBlock Opac50">18.08.2016</span>
+                                    <span class="FontPoppinsSemiBold Fs12 Leaden DispBlock">Development Of Venture Timeline Structure</span>
+                                    <span class="FontPoppinsLight Fs10 Aqua">Reported by @hansolo</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="EmptyBox10"></div>
+                        <p:commandButton type="button" value="Load More" styleClass="GrayButton"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side -->
+            <div class="Container50 Responsive100 NoIndent Flex FlexWrap">
+                <div class="Container50 Responsive50 Flex">
+                    <div class="Card OvHidden" style="padding:0px;">
+                        <div class="DispBlock AquaBack OvHidden" style="padding:1.6rem;">
+                            <span class="DispBlock FontPoppinsSemiBold Fs14 White Opac70">Venture Upcoming Projects 
+                                <span class="Fright FontPoppinsSemiBold Fs20 White Opac100">0 <span class="FontPoppinsLight Fs14 Opac70">/ Open Tasks</span></span>
+                            </span>
+                            <span class="FontPoppinsRegular White Fs24">Sentinel Project</span>
+                        </div>
+                        <div class="DispBlock OvHidden ui-fluid" style="padding:1.6rem;">
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Open Tasks (0)" styleClass="BlueButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="In Progress (0)" styleClass="OrangeButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Delayed (0)" styleClass="PinkButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Done (0)" styleClass="GreenButton"/></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Container50 Responsive50 Flex">
+                    <div class="Card OvHidden" style="padding:0px;">
+                        <div class="DispBlock AquaBack OvHidden" style="padding:1.6rem;">
+                            <span class="DispBlock FontPoppinsSemiBold Fs14 White Opac70">Venture Upcoming Projects 
+                                <span class="Fright FontPoppinsSemiBold Fs20 White Opac100">0 <span class="FontPoppinsLight Fs14 Opac70">/ Open Tasks</span></span>
+                            </span>
+                            <span class="FontPoppinsRegular White Fs24">Spark Project</span>
+                        </div>
+                        <div class="DispBlock OvHidden ui-fluid" style="padding:1.6rem;">
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Open Tasks (0)" styleClass="BlueButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="In Progress (0)" styleClass="OrangeButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Delayed (0)" styleClass="PinkButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Done (0)" styleClass="GreenButton"/></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Container50 Responsive50 Flex">
+                    <div class="Card OvHidden" style="padding:0px;">
+                        <div class="DispBlock RedBack OvHidden" style="padding:1.6rem;">
+                            <span class="DispBlock FontPoppinsSemiBold Fs14 White Opac70">Venture Delayed Projects 
+                                <span class="Fright FontPoppinsSemiBold Fs20 White Opac100">331 <span class="FontPoppinsLight Fs14 Opac70">/ Open Tasks</span></span>
+                            </span>
+                            <span class="FontPoppinsRegular White Fs24">Titan Project</span>
+                        </div>
+                        <div class="DispBlock OvHidden ui-fluid" style="padding:1.6rem;">
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Open Tasks (2331)" styleClass="BlueButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="In Progress (23)" styleClass="OrangeButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Delayed (4)" styleClass="PinkButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Done (56)" styleClass="GreenButton"/></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Container50 Responsive50 Flex">
+                    <div class="Card OvHidden" style="padding:0px;">
+                        <div class="DispBlock PurpleBack OvHidden" style="padding:1.6rem;">
+                            <span class="DispBlock FontPoppinsSemiBold Fs14 White Opac70">Venture Active Projects 
+                                <span class="Fright FontPoppinsSemiBold Fs20 White Opac100">142 <span class="FontPoppinsLight Fs14 Opac70">/ Open Tasks</span></span>
+                            </span>
+                            <span class="FontPoppinsRegular White Fs24">Volt Project</span>
+                        </div>
+                        <div class="DispBlock OvHidden ui-fluid" style="padding:1.6rem;">
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Open Tasks (2331)" styleClass="BlueButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="In Progress (23)" styleClass="OrangeButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Delayed (4)" styleClass="PinkButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Done (56)" styleClass="GreenButton"/></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Container50 Responsive50 Flex">
+                    <div class="Card OvHidden" style="padding:0px;">
+                        <div class="DispBlock AquaBack OvHidden" style="padding:1.6rem;">
+                            <span class="DispBlock FontPoppinsSemiBold Fs14 White Opac70">Venture Upcoming Projects 
+                                <span class="Fright FontPoppinsSemiBold Fs20 White Opac100">0 <span class="FontPoppinsLight Fs14 Opac70">/ Open Tasks</span></span>
+                            </span>
+                            <span class="FontPoppinsRegular White Fs24">Modena Project</span>
+                        </div>
+                        <div class="DispBlock OvHidden ui-fluid" style="padding:1.6rem;">
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Open Tasks (0)" styleClass="BlueButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="In Progress (0)" styleClass="OrangeButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Delayed (0)" styleClass="PinkButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Done (0)" styleClass="GreenButton"/></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Container50 Responsive50 Flex">
+                    <div class="Card OvHidden" style="padding:0px;">
+                        <div class="DispBlock PurpleBack OvHidden" style="padding:1.6rem;">
+                            <span class="DispBlock FontPoppinsSemiBold Fs14 White Opac70">Venture Active Projects 
+                                <span class="Fright FontPoppinsSemiBold Fs20 White Opac100">80 <span class="FontPoppinsLight Fs14 Opac70">/ Open Tasks</span></span>
+                            </span>
+                            <span class="FontPoppinsRegular White Fs24">Adamantium Project</span>
+                        </div>
+                        <div class="DispBlock OvHidden ui-fluid" style="padding:1.6rem;">
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Open Tasks (342)" styleClass="BlueButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="In Progress (12)" styleClass="OrangeButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Delayed (33)" styleClass="PinkButton"/></div>
+                            <div class="Container50 Responsive50"><p:commandButton type="button" value="Done (87)" styleClass="GreenButton"/></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>

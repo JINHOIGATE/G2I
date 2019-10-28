@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pri="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui"
+                template="/common.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <div id="content-header">
+            <div id="breadcrumb"> 
+                <a href="index.xhtml" title="Aller à la page d'acceuil" class="tip-bottom"><i class="icon-home"></i> Acceuil</a>
+                <a href="#" title="G2I configuration" class="tip-bottom"><i class="icon-cogs"></i>Configuration</a>
+                <a href="#" class="current">Gestion des Techniciens</a>
+            </div>
+        </div>
+
+        <h:form id="form" styleClass="form">
+            <p:growl id="growl" sticky="true" autoUpdate="true" life="0" globalOnly="true" />
+            <p:panel id="basic" header="Formulaire de gestion des techniciens"
+                     style="margin-bottom:20px" styleClass="entreprise" footer="Formulaire de gestion des techniciens">
+
+                <h:panelGrid columns="6" cellpadding="20" cellspacing="20">
+                    <p:outputLabel value="Nom:" for="cache" />
+                    <p:inputText placeholder="nom du technicien" id="cache"   value="#{technicienBean.formObject.nomT}" required="true" requiredMessage="Veuillez renseigner correctement le nom de l'entreprise!"/>
+
+                    <p:outputLabel value="Prenom:" for="pcache" />
+                    <p:inputText placeholder="prenom du technicien" id="pcache"   value="#{technicienBean.formObject.prenomT}" required="true" requiredMessage="Veuillez renseigner correctement le nom de l'entreprise!"/>
+
+                    <p:outputLabel value="adresse:" for="adresse" />
+                    <p:inputText   id="adresse"  value="#{technicienBean.formObject.adresseT}"  required="true" requiredMessage="Veuillez indiquer une bonne adresse!"/>
+
+                    <p:outputLabel value="login:" for="login" />
+                    <p:inputText placeholder="identifiant du tehcnicien" id="login"  value="#{technicienBean.formObject.loginT}" required="true" requiredMessage="Veuillez attribuer un bon identifiant!"/>
+
+                    <p:outputLabel value="email:" for="email" />
+                    <p:column>
+                        <p:inputText placeholder="ex:jorjinho@gmail.com" id="email" value="#{technicienBean.formObject.emailT}" required="true"  requiredMessage="Veuillez renseigner le bon email!"/>
+                        <!--<p:message for="email" />-->
+                    </p:column>
+
+
+                    <p:outputLabel value="contact:" for="contact" />
+                    <p:column>
+                        <p:inputText placeholder="ex:92-20-20-20" id="contact" value="#{technicienBean.formObject.contactT}"  required="true" requiredMessage="Veuillez saisir correctement le contact!"/>
+                        <!--<p:message for="contact"/>-->
+                    </p:column>
+
+                    <p:outputLabel for="console" value="Sexe:" />
+                    <p:selectOneRadio id="console" value="#{technicienBean.formObject.sexeT}">
+                        <f:selectItem itemLabel="Masculin" itemValue="M" />
+                        <f:selectItem itemLabel="Feminin" itemValue="F" />
+                    </p:selectOneRadio>
+
+                    <p:outputLabel for="german" value="Date de naissance:" />
+                    <p:calendar  effect="fold"  mask="true"  id="german" value="#{technicienBean.formObject.dateNaissanceT}" locale="de" navigator="true" pattern="dd-MM-yyyy" >
+                        <f:convertDateTime type="date"  dateStyle="short" pattern="dd-MM-yyyy" />
+                    </p:calendar>
+
+
+                    <p:outputLabel value="Actif:" />
+                    <p:selectBooleanCheckbox value="#{technicienBean.formObject.actifT}"  />
+
+                </h:panelGrid>
+
+                <center>
+                    <h:panelGrid columns="4" cellpadding="5" cellspacing="5"  >
+                        <p:commandButton value="Valider" id="valide"  update="form" actionListener="#{technicienBean.enregistrer()}" styleClass="ui-priority-primary" />
+                        <p:commandButton value="Annuler" id="annuler"  update="form" actionListener="#{technicienBean.rafraichir()}"  />
+                    </h:panelGrid>
+                </center>
+
+                <!--<p:messages id="messages"/>-->
+
+            </p:panel>
+
+            <p:dataTable id="tbl" var="item" value="#{technicienBean.technicienList}" scrollable="true" paginatorPosition="top"
+                         paginator="true" rows="4"  emptyMessage="Aucun compte entreprise"
+                         selectionMode="single" selection="#{technicienBean.selectObject}" rowKey="#{item.idUtilisateurT}" styleClass="data"
+                         resizableColumns="true" style="font-size: inherit" >
+
+                <p:ajax event="rowDblselect" update="@(.entreprise)" listener="#{technicienBean.rowSelect()}"/>
+
+                <f:facet name="header">
+                    <h:outputText value="Liste des comptes des techniciens" style="font-family: Gill, Helvetica, sans-serif;
+                                  font-size: 20px; font-style: normal; color: white"/>
+                </f:facet>
+
+                <p:column filterBy="#{item.idUtilisateurT}" sortBy="#{item.idUtilisateurT}">
+                    <f:facet name="header">
+                        <h:outputText value="id" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.idUtilisateurT}" > </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.nomT}" sortBy="#{item.nomT}">
+                    <f:facet name="header">
+                        <h:outputText value="Nom" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.nomT}" > </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.prenomT}" sortBy="#{item.prenomT}">
+                    <f:facet name="header">
+                        <h:outputText value="Prenom" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.prenomT}" > </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.adresseT}" sortBy="#{item.adresseT}">
+                    <f:facet name="header">
+                        <h:outputText value="Adresse"/>
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.adresseT}"  > </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.emailT}" sortBy="#{item.emailT}">
+                    <f:facet name="header">
+                        <h:outputText value="Email" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.emailT}"  > </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.contactT}" sortBy="#{item.contactT}">
+                    <f:facet name="header">
+                        <h:outputText value="Contact" />
+                    </f:facet>
+                    <center>
+
+                        <h:outputText value="#{item.contactT}"  > </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.loginT}" sortBy="#{item.loginT}">
+                    <f:facet name="header">
+                        <h:outputText value="Login" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.loginT}" />
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.motDePasseT}" sortBy="#{item.motDePasseT}">
+                    <f:facet name="header">
+                        <h:outputText value="PassWord" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.motDePasseT}" />
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.sexeT}" sortBy="#{item.sexeT}">
+                    <f:facet name="header">
+                        <h:outputText value="Sexe" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.sexeT}" />
+                    </center>
+                </p:column>
+
+
+                <p:column filterBy="#{item.actifT}" sortBy="#{item.actifT}">
+                    <f:facet name="header">
+                        <h:outputText value="Actif" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.actifT}" />
+                    </center>
+                </p:column>
+
+            </p:dataTable>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+

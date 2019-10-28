@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pri="http://primefaces.org/ui"
+                template="/common.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="head">
+
+    </ui:define>
+
+    <ui:define name="content">
+        <div id="content-header">
+            <div id="breadcrumb"> 
+                <a href="index.xhtml" title="Aller à la page d'acceuil" class="tip-bottom"><i class="icon-home"></i> Acceuil</a>
+                <a href="#" class="current">Gestion des materiels</a>
+            </div>
+        </div>
+        <!--breadcrumb -->
+        <div class="container-fluid"><hr/>
+            <div class="row-fluid">
+                <div class="span6" align="center">
+                    <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+                            <h5>Liste des materiels</h5>
+                        </div>
+                        <div class="widget-content nopadding">
+                            <pri:growl autoUpdate="true" life="3000"></pri:growl>
+                            <h:form class="form-horizontal" id="materiel_form">
+                                <pri:dataTable id="materielDT" var="materiel" value="#{materielBean.materiels}" selectionMode="single"
+                                               selection="#{materielBean.materiel}" rowKey="#{materiel.idMateriel}">
+                                    <pri:ajax event="rowSelect" update="materiel_form @([id$=crtMateriel])" immediate="true" listener="#{materielBean.modifiedMateriel()}" />
+                                    <pri:column headerText="Nom materiel">
+                                        <h:outputText value="#{materiel.nomMat}"/>
+                                    </pri:column>
+                                    <pri:column headerText="Type materiel">
+                                        <h:outputText value="#{materiel.typeMateriel.libTypeMat}"/>
+                                    </pri:column>
+                                </pri:dataTable>
+                                <div class="form-actions">
+                                    <h:link p:href="#myModal" p:data-toggle="modal" class="btn btn-success">Ajouter</h:link>
+                                    <h:commandButton p:href="#myModal" p:data-toggle="modal" class="btn" disabled="#{materielBean.btDisableMateriel}" value="Modifier"/>
+                                    <h:commandButton p:href="#confModal" p:data-toggle="modal" class="btn" value="Supprimer" disabled="#{materielBean.btDisableMateriel}" />
+                                </div>
+                                <!-- confirmation modal -->
+                                <div id="confModal" class="modal hide">
+                                    <div class="widget-box">
+                                        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                                            <h5>Confirmer l'action</h5>
+                                        </div>
+                                        <div class="widget-content nopadding">
+                                            <h:form  class="form-horizontal">
+                                                <pri:messages autoUpdate="true" showDetail="true" closable="true" />
+                                                <div class="control-group">
+                                                    <h:outputLabel style="margin-left: 150px; margin-top: 10px;" class="span9" value="Voulez vous supprimer cet élément?" />
+                                                </div>
+                                                <div class="form-actions pull-right" >
+                                                    <pri:commandButton class="btn btn-success" value="Valider" action="#{materielBean.deleteMateriel()}" update="materiel_form"></pri:commandButton>
+                                                    <pri:commandButton style="margin: 10px;" p:data-dismiss="modal" class="btn btn-danger" value="Annuler" update="materiel_form" actionListener="#{materielBean.cancelMateriel()}"></pri:commandButton>
+                                                </div>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end confirmation modal -->
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- type de materiel table -->
+            <div class="row-fluid">
+                <div class="span3" align="center">
+                    <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+                            <h5>Liste des types materiels</h5>
+                        </div>
+                        <div class="widget-content nopadding">
+                            <pri:growl autoUpdate="true" life="3000"></pri:growl>
+                            <h:form class="form-horizontal" id="typeMateriel_form">
+                                <pri:dataTable id="typeMaterielDT" var="typeMat" value="#{materielBean.typeMateriels}" selectionMode="single"
+                                               selection="#{materielBean.typeMateriel}" rowKey="#{typeMat.idTypeMat}">
+                                    <pri:ajax event="rowSelect" update="typeMateriel_form @([id$=crtTypeMateriel])" immediate="true" listener="#{materielBean.modifiedTypeMateriel()}" />
+                                    <pri:column headerText="Libelle type">
+                                        <h:outputText value="#{typeMat.libTypeMat}"/>
+                                    </pri:column>
+                                </pri:dataTable>
+                                <div class="form-actions">
+                                    <h:link p:href="#myModal2" p:data-toggle="modal" class="btn btn-success">Ajouter</h:link>
+                                    <h:commandButton p:href="#myModal2" p:data-toggle="modal" class="btn" disabled="#{materielBean.btDisabledTypeMateriel}" value="Modifier"/>
+                                    <h:commandButton p:href="#confModal2" p:data-toggle="modal" class="btn" value="Supprimer" disabled="#{materielBean.btDisabledTypeMateriel}"  />
+                                </div>
+                                <!-- confirmation modal -->
+                                <div id="confModal2" class="modal hide">
+                                    <div class="widget-box">
+                                        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                                            <h5>Confirmer l'action</h5>
+                                        </div>
+                                        <div class="widget-content nopadding">
+                                            <h:form  class="form-horizontal">
+                                                <pri:messages autoUpdate="true" showDetail="true" closable="true" />
+                                                <div class="control-group">
+                                                    <h:outputLabel style="margin-left: 150px; margin-top: 10px;" class="span9" value="Voulez vous supprimer cet élément?" />
+                                                </div>
+                                                <div class="form-actions pull-right" >
+                                                    <pri:commandButton class="btn btn-success" value="Valider" action="#{materielBean.deleteTypeMateriel()}" update="typeMateriel_form"/>
+                                                    <pri:commandButton style="margin: 10px;" p:data-dismiss="modal" class="btn btn-danger" value="Annuler" actionListener="#{materielBean.cancelTypeMateriel()}" update="typeMateriel_form"/>
+                                                </div>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end confirmation modal -->
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal hide">
+            <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Enregistrer Materiel</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <h:form id="crtMateriel"  class="form-horizontal">
+                        <pri:messages autoUpdate="true" showSummary="true" closable="true" />
+                        <div class="control-group">
+                            <label class="control-label">Designation :</label>
+                            <div class="controls">
+                                <h:inputText class="span3" p:placeholder="Entrez la designation" value="#{materielBean.materiel.nomMat}"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Type materiel :</label>
+                            <div class="controls">
+                                <h:selectOneMenu value="#{materielBean.materiel.typeMateriel}" converter="omnifaces.SelectItemsConverter">
+                                    <f:selectItem itemLabel="Selectionner un element" noSelectionOption="true" itemDisabled="true" />
+                                    <f:selectItems value="#{materielBean.typeMateriels}" var="typeMateriel" itemLabel="#{typeMateriel.libTypeMat}" itemValue="#{typeMateriel}"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <pri:commandButton class="btn btn-success" value="Valider" action="#{materielBean.createMateriel()}" update="crtMateriel"></pri:commandButton>
+                            <pri:commandButton style="margin: 10px;" p:data-dismiss="modal" class="btn btn-danger" value="Annuler" actionListener="#{materielBean.cancelMateriel()}" update="@([id$=materiel_form])"></pri:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+        <div id="myModal2" class="modal hide">
+            <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Enregistrer type materiel</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <h:form id="crtTypeMateriel"  class="form-horizontal">
+                        <pri:messages autoUpdate="true" showSummary="true" closable="true" />
+                        <div class="control-group">
+                            <label class="control-label">Libelle :</label>
+                            <div class="controls">
+                                <h:inputText class="span3" p:placeholder="Entrez le libelle" value="#{materielBean.typeMateriel.libTypeMat}"/>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <pri:commandButton class="btn btn-success" value="Valider" action="#{materielBean.createTypeMateriel()}" update="crtTypeMateriel"/>
+                            <pri:commandButton style="margin: 10px;" p:data-dismiss="modal" class="btn btn-danger" value="Annuler" actionListener="#{materielBean.cancelTypeMateriel()}" update="@([id$=typeMateriel_form])"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+
+    <ui:define name="javS">
+        <script src="https://cdn.jsdelivr.net/jquery/3.2.1/jquery.min.js"></script> 
+        <script>
+            $("document").ready(function () {
+                $("li").removeClass('active');
+                $("#config").addClass('active');
+            });
+        </script>
+    </ui:define>
+</ui:composition>

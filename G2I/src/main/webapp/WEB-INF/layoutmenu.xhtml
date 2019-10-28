@@ -1,0 +1,55 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pv="http://primefaces.org/venture">
+
+    <h:form id="menuform">
+        <pv:menu widgetVar="VentureMenu">
+
+            <p:menuitem value="ACCEUIL" outcome="/index"/>
+
+            <p:submenu id="entreprise" label="GESTION DES ENTREPRISES">
+                <p:menuitem id="om_db_landing" value="Gestion des comptes"  icon="icon-jewel" outcome="/gestionCompteEntrepriseView"/>
+                <p:menuitem id="om_db_landing1" value="Gestion des services"  icon="icon-jewel" outcome="/gestionServiceView"/>
+                <p:menuitem id="om_db_pm1" value="Gestion des produits"        icon="icon-lightbulb" outcome="/gestionProduitView"/>
+                <p:menuitem id="om_db_pm2" value="Gestion des postes"  icon="icon-lightbulb" outcome="/gestionPosteView"/>
+            </p:submenu>
+
+            <p:menuitem value="GESTION DES DEMANDES" outcome="/gestDemande"/>
+
+            <p:submenu id="intervention" label="GESTION DES INTERVENTIONS">
+                <p:menuitem id="om_db_landing_in" value="Les demandes"  icon="icon-pill" outcome="/sample"/>
+                <p:menuitem id="om_db_landing_in1" value="Les planifications"  icon="icon-article" outcome="/sample"/>
+                <p:menuitem id="om_db_pm1_in2" value="Les interventions"        icon="icon-stack" outcome="/sample"/>
+            </p:submenu>
+
+
+            <p:submenu id="configuration" label="CONFIGURATION">
+                <p:menuitem id="om_db_landing_TECH" value="Gestion des Techniciens"  icon="icon-pill" outcome="/gestionTechnicienView"/>
+                <p:menuitem id="om_db_landing_RESP" value="Gestion des Responsables"  icon="icon-article" outcome="/gesPersonnelView"/>
+                <p:menuitem id="om_db_pm1_JOUR" value="Journal système" icon="icon-stack" outcome="/gestJournalView"/>
+            </p:submenu>
+
+
+            <p:menuitem value="TOUTES LES INTERVENTIONS" outcome="/sample"/>
+
+            <p:submenu id="AUTRES" label="AUTRES">
+                <p:menuitem id="om_db_landing_STA" value="Voir les statistiques"  icon="icon-pill" outcome="/sample"/>
+                <p:menuitem id="om_db_landing_PRO" value="A propos"  icon="icon-article" outcome="/sample"/>
+                <p:menuitem id="om_db_pm1_CON" value="Contacts" icon="icon-stack" outcome="/sample"/>
+            </p:submenu>
+
+            <p:submenu id="om_default" label="DEFAULT PAGES">
+                <p:menuitem id="om_empty" value="Empty Page" icon="icon-copy" outcome="/empty-page" />
+                <p:menuitem id="om_login" value="Login Page" icon="icon-lock-open" outcome="/login" />
+                <p:menuitem id="om_error" value="Error Page" icon="icon-thumbs-down" outcome="/error" />
+                <p:menuitem id="om_404" value="404 Page" icon="icon-document-delete" outcome="/404" />
+                <p:menuitem id="om_access" value="Access Denied Page" icon="icon-tag-delete" outcome="/access-denied" />
+            </p:submenu>
+        </pv:menu>
+    </h:form>
+
+</ui:composition>

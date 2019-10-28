@@ -1,0 +1,29 @@
+#valide{
+    padding:0px;
+    width:80px;
+    height:30px;
+    margin-left:125px;
+    color:#red;
+    background:#9FDA90;
+    border:1px solid #6EB45C;
+}
+#valide:hover{
+    cursor:pointer;
+    cursor:pointer;
+    background-color:#fff;
+}
+#valide:active{
+    position:relative;
+    left:1px;
+    top:1px;
+}
+
+.text { 
+    width: 200%;
+    font-size: 15px;
+}
+pri {
+    color: red;
+    border: 1px solid powderblue;
+    padding: 30px;
+}

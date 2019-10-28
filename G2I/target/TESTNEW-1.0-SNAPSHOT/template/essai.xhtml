@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:outputLabel value="IdUtilisateurE:" for="idUtilisateurE" />
+        <p:selectOneMenu style="width: 125px"  id="idUtilisateurE" value="#{produitBean.formObject.idUtilisateurE}" required="true" requiredMessage="The IdUtilisateurE field is required.">
+            <f:selectItem itemLabel="selectionné une entreprise" itemValue="" noSelectionOption="true"/>
+           
+            <f:selectItems value="#{entrepriseBean.entreprises()}" var="i" itemLabel="#{i.nomE}" itemValue="#{i}" />
+        </p:selectOneMenu>
+
+        <p:selectOneListbox id="advanced" value="#{selectOneView.theme}" converter="themeConverter" var="t" filter="true" filterMatchMode="contains">
+            <f:selectItems value="#{selectOneView.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme}" />
+ 
+            <p:column>
+                <h:outputText styleClass="ui-theme ui-theme-#{t.name}" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{t.displayName}" />
+            </p:column>
+        </p:selectOneListbox>
+
+    </h:body>
+</html>
+

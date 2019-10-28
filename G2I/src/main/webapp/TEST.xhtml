@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pri="http://primefaces.org/ui"
+                template="/common.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <div id="content-header">
+            <div id="breadcrumb"> 
+                <a href="index.xhtml" title="Aller à la page d'acceuil" class="tip-bottom"><i class="icon-home"></i> Acceuil</a>
+                <a href="#" title="G2I configuration" class="tip-bottom"><i class="icon-cogs"></i>Gestion des entreprises</a>
+                <a href="#" class="current">Gestion des services d'une entreprise</a>
+                <h1>Common Form Elements</h1>
+            </div>
+        </div>
+
+        <h:form id="form" styleClass="form">
+           
+            <div class="container-fluid">
+                
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget-box">
+                                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                                    <h5>for</h5>
+                                </div>
+                                <div class="widget-content nopadding">
+                                    <!--<form action="#" method="get" class="form-horizontal">-->
+                                        <div class="control-group">
+                                            <label class="control-label">First Name :</label>
+                                            <div class="controls">
+                                                <input type="text" class="span11" placeholder="First name" />
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">Last Name :</label>
+                                            <div class="controls">
+                                                <input type="text" class="span11" placeholder="Last name" />
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">Password input</label>
+                                            <div class="controls">
+                                                <input type="password"  class="span11" placeholder="Enter Password"  />
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">Company info :</label>
+                                            <div class="controls">
+                                                <input type="text" class="span11" placeholder="Company name" />
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">Description field:</label>
+                                            <div class="controls">
+                                                <input type="text" class="span11" />
+                                                <span class="help-block">Description field</span> </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">Message</label>
+                                            <div class="controls">
+                                                <textarea class="span11" ></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="submit" class="btn btn-success">Save</button>
+                                        </div>
+                                    <!--</form>-->
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            
+
+                            </h:form>
+
+                            </ui:define>
+                            </ui:composition>
+

@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:pri="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui"
+                template="/common.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <div id="content-header">
+            <div id="breadcrumb"> 
+                <a href="index.xhtml" title="Aller à la page d'acceuil" class="tip-bottom"><i class="icon-home"></i> Acceuil</a>
+                <a href="#" title="G2I configuration" class="tip-bottom"><i class="icon-cogs"></i>Configuration</a>
+                <a href="#" class="current">Journal système</a>
+            </div>
+        </div>
+
+        <h:form id="form" styleClass="form">
+
+            <p:dataTable id="tbl" var="item" value="#{actionBean.actionList}" scrollable="true" paginatorPosition="top"
+                         paginator="true" rows="4"  emptyMessage="Aucun compte entreprise"
+                         selectionMode="single" selection="#{actionBean.selectObject}" rowKey="#{item.idAction}" styleClass="data"
+                         resizableColumns="true" style="font-size: inherit" >
+
+
+                <f:facet name="header">
+                    <h:outputText value="Journal système" style="font-family: Gill, Helvetica, sans-serif;
+                                  font-size: 20px; font-style: normal; color: white"/>
+                </f:facet>
+
+                <p:column filterBy="#{item.idAction}" sortBy="#{item.idAction}">
+                    <f:facet name="header">
+                        <h:outputText value="id" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.idAction}" > </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.libelleAction}" sortBy="#{item.libelleAction}">
+                    <f:facet name="header">
+                        <h:outputText value="Action" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.libelleAction}" > </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.descriptionAction}" sortBy="#{item.descriptionAction}">
+                    <f:facet name="header">
+                        <h:outputText value="Description" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.descriptionAction}" > </h:outputText>
+                    </center>
+                </p:column>
+
+                <p:column filterBy="#{item.idProfil.libelleProfil}" sortBy="#{item.idProfil.libelleProfil}">
+                    <f:facet name="header">
+                        <h:outputText value="Profil"/>
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.idProfil.libelleProfil}"  > </h:outputText>
+                    </center>
+                </p:column>
+              
+
+                <p:column filterBy="#{item.idUtilisateur}" sortBy="#{item.idUtilisateur}">
+                    <f:facet name="header">
+                        <h:outputText value="Utilisateur" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.idUtilisateur}"  > </h:outputText>
+                    </center>
+                </p:column>
+                
+                <p:column filterBy="#{item.nomUtilisateur}" sortBy="#{item.nomUtilisateur}">
+                    <f:facet name="header">
+                        <h:outputText value="nom Utilisateur" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.nomUtilisateur}"  > </h:outputText>
+                    </center>
+                </p:column>
+                
+
+                <p:column filterBy="#{item.dateAction}" sortBy="#{item.dateAction}">
+                    <f:facet name="header">
+                        <h:outputText value="Date" />
+                    </f:facet>
+                    <center>
+
+                        <h:outputText value="#{item.dateAction}"  > </h:outputText>
+                    </center>
+                </p:column>
+               
+            </p:dataTable>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+

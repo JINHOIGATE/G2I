@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>RDS Admin</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet name="css/bootstrap.min.css" />
+        <h:outputStylesheet name="css/bootstrap-responsive.min.css"/>
+        <h:outputStylesheet name="css/fullcalendar.css"/>
+        <h:outputStylesheet name="css/matrix-style.css" />
+        <h:outputStylesheet name="css/matrix-media.css"/>
+        <h:outputStylesheet name="css/font-awesome.css"/>
+        <h:outputStylesheet name="css/jquery.gritter.css" />
+    </h:head>
+    <h:body>
+
+        <!--Header-part-->
+        <div id="header">
+            <h1><a href="dashboard.html"></a></h1>
+        </div>
+        <!--close-Header-part--> 
+
+
+        <!--top-Header-menu-->
+        <div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav">
+                <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Bienvenue UserName</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-user"></i> Mon Profil</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-check"></i>Mes Tâches </a></li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="icon-key"></i> Deconnexion</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Réservations</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> Nouvelle Réservation</a></li>
+                        <li class="divider"></li>
+                        <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i> Réservations en attente</a></li>
+                        <!--
+                        <li class="divider"></li>
+                        <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> </a></li>
+                        <li class="divider"></li>
+                        <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
+                        -->
+                    </ul>
+                </li>
+                <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Paramètres</span></a></li>
+                <!--<li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>-->
+            </ul>
+        </div>
+        <!--close-top-Header-menu-->
+
+        <!--start-top-serch-->
+        <div id="search">
+            <input type="text" placeholder="Rechercher ici..."/>
+            <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+        </div>
+        <!--close-top-search-->
+
+        <!--sidebar-menu-->
+        <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+            <ul>
+                <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>Tableau de Bord</span></a> </li>
+                <li> <a href="charts.html"><i class="icon icon-user"></i> <span>Gestion des Clients</span></a> </li>
+                <li> <a href="widgets.html"><i class="icon icon-user-md"></i> <span>Gestion des Utilisateurs</span></a> </li>
+                <li><a href="tables.html"><i class="icon icon-tags"></i> <span></span>Gestion des Salles</a></li>
+                <li id="salles"><a href="./gestVilleBat.xhtml" ><i class="icon icon-th"></i> <span></span>Gestion des Batiments et Villes</a></li>
+                <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Gestion des Matériels</span></a></li>
+                <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Consultations</span> <span class="label label-important">3</span></a>
+                    <ul>
+                        <li><a href="form-common.html">Nouvelles Réservations</a></li>
+                        <li><a href="form-validation.html">Réservations en attente</a></li>
+                        <li><a href="form-wizard.html">Toutes les réservations</a></li>
+                        <li><a href="form-validation.html">Calendrier</a></li>
+                    </ul>
+                </li>
+                <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Gestions des Factures</span></a></li>
+                <li><a href="interface.html"><i class="icon icon-pencil"></i> <span></span></a></li>
+                <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>AUTRES</span> <span class="label label-important">5</span></a>
+                    <ul>
+                        <li><a href="index2.html"></a></li>
+                        <li><a href="gallery.html">A propos</a></li>
+                        <li><a href="calendar.html">Contacts</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!--sidebar-menu-->
+        <div id="content">
+            <div id="content-header">
+                <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="#" class="current">Error</a> </div>
+                <h1>#{error.statusCode}</h1>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="widget-box">
+                            <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+                                <h5>Erreur #{error.statusCode}</h5>
+                            </div>
+                            <div class="widget-content">
+                                <div class="error_ex">
+                                    <h1>#{error.statusCode}</h1>
+                                    <h5>Oups,  une erreur interne s'est produite dans ce programme. Veuillez contacter le support technique.</h5>
+                                    <p>#{error.errorDescription}</p>
+                                    <h:link class="btn btn-warning btn-big" value="Acceuil" outcome="index"/>
+                                    <h5>Copier-Coller ces informations dans l'Email </h5>
+                                    <h:inputTextarea value="#{error.stackTrace}"
+                                                     readonly="true"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Footer-part-->
+        <div class="row-fluid">
+            <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
+        </div>
+        <!--end-Footer-part-->
+        <script src="js/jquery.min.js"></script> 
+        <script src="js/jquery.ui.custom.js"></script> 
+        <script src="js/bootstrap.min.js"></script> 
+        <script src="js/maruti.js"></script>
+    </h:body>
+</html>

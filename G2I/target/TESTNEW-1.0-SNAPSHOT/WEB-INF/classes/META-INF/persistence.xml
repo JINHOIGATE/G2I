@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="TESTNEWPU" transaction-type="JTA">
+    <jta-data-source>jndiTest</jta-data-source>
+    <class>com.ipsofts.gestionIntervention.entities.Action</class>
+    <class>com.ipsofts.gestionIntervention.entities.Demande</class>
+    <class>com.ipsofts.gestionIntervention.entities.Entreprise</class>
+    <class>com.ipsofts.gestionIntervention.entities.Intervention</class>
+    <class>com.ipsofts.gestionIntervention.entities.Modeintervention</class>
+    <class>com.ipsofts.gestionIntervention.entities.Personnel</class>
+    <class>com.ipsofts.gestionIntervention.entities.Planification</class>
+    <class>com.ipsofts.gestionIntervention.entities.Poste</class>
+    <class>com.ipsofts.gestionIntervention.entities.Produit</class>
+    <class>com.ipsofts.gestionIntervention.entities.Profil</class>
+    <class>com.ipsofts.gestionIntervention.entities.Service</class>
+    <class>com.ipsofts.gestionIntervention.entities.Technicien</class>
+    <class>com.ipsofts.gestionIntervention.entities.Typedemande</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>

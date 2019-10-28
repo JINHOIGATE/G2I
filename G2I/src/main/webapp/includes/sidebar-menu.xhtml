@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <h:form style="" styleClass="">
+        <div id="sidebar" style="background-color: white"><a href="#" class="visible-phone"><i class="icon icon-home"></i> ACCEUIL</a>
+            <ul>
+                <li ><h:commandLink id="acceuil" action="/index.xhtml" style="" styleClass="" ><i class="icon icon-home" ></i> <span> ACCEUIL</span></h:commandLink></li>
+                <li class="submenu" id="config"> <a href="#"><i class="icon-eye-open"></i> <span>Gestion des Entreprises</span></a>
+                    <ul>
+                        <li ><h:commandLink id="gestCompte" action="/gestionCompteEntrepriseView" style="" styleClass="" ><i class="icon icon-tags" ></i> <span> Gestion des comptes</span></h:commandLink></li>
+                        <li ><h:commandLink id="gestService" action="/gestionServiceView" style="" styleClass="" ><i class="icon icon-th" ></i> <span> Gestion des services</span></h:commandLink></li>
+                        <li ><h:commandLink id="gestProduit" action="/gestionProduitView" style="" styleClass="" ><i class="icon icon-fullscreen" ></i> <span> Gestion des produits</span></h:commandLink></li>
+                        <li ><h:commandLink id="gestPoste" action="/gestionPosteView" style="" styleClass="" ><i class="icon icon-user-md" ></i> <span> Gestion des postes</span></h:commandLink></li>
+                    </ul>
+                </li>
+                <li ><h:commandLink id="gestDemande" action="/gestDemande" style="" styleClass="" ><i class="icon icon-tint" ></i> <span> Gestions des Demandes</span></h:commandLink></li>
+
+                <li class="submenu"> <a href="#"><i class="icon-eye-open"></i> <span>Gestions des Interventions</span></a>
+
+                    <ul>
+                        <li><a href="./gestsalles.xhtml" ><span class="label label-important">10</span><span></span>Les demandes </a></li>
+                        <li><a href="./gestVilleBat.xhtml" ><i class="icon icon-th"></i> <span></span>Les planificatoins</a></li>
+                        <li><a href="./gestVilleBat.xhtml" ><i class="icon icon-th"></i> <span></span>Les interventions</a></li>
+                    </ul>
+
+                </li>
+                <li class="submenu" id="config"> <a href="#"><i class="icon icon-cogs"></i> <span>Configuration</span></a>
+                    <ul>
+
+                        <li ><h:commandLink id="gestTech" action="/gestionTechnicienView" style="" styleClass="" ><i class="icon icon-th" ></i> <span> Gestion des Techniciens</span></h:commandLink></li>
+
+                        <li ><h:commandLink id="gestPer" action="/gesPersonnelView" style="" styleClass="" ><i class="icon icon-th" ></i> <span> Gestion des Responsables </span></h:commandLink></li>
+
+                        <li ><h:commandLink id="gestJournal" action="/gestJournalView" style="" styleClass="" ><i class="icon icon-th" ></i> <span> Journal système </span></h:commandLink></li>
+
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>AUTRES</span> </a>
+                    <ul>
+                        <li><a href="#">Voir les statistiques</a></li>
+                        <li><a href="#">A propos</a></li>
+                        <li><a href="#">Contacts</a></li>
+                    </ul>
+                </li>
+                <li><a href="./gestFacture.xhtml"><i class="icon icon-tint"></i> <span>Toutes les interventions</span></a></li>
+
+            </ul>
+        </div>
+    </h:form> 
+</ui:composition>

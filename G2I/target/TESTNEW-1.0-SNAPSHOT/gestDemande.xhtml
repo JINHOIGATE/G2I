@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pri="http://primefaces.org/ui"
+                template="/common.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <div id="content-header">
+            <div id="breadcrumb"> 
+                <a href="index.xhtml" title="Aller à la page d'acceuil" class="tip-bottom"><i class="icon-home"></i> Acceuil</a>
+                <a href="#" title="G2I configuration" class="tip-bottom"><i class="icon-cogs"></i>Gestion des demandes</a>
+                <a href="#" class="current">Gestion des demandes</a>
+            </div>
+        </div>
+
+
+
+
+        <h:form id="form" styleClass="form">
+            <pri:growl id="growl" sticky="true" autoUpdate="true" life="0" globalOnly="true" />
+
+            <!--<pri:fieldset legend="Formulaire de gestion des produits"  styleClass="entreprise"  >-->
+            <pri:panel id="basic" header="Formulaire de gestion des demandes"  footer="Formulaire de gestion des demandes"
+                       style="margin-bottom:20px" styleClass="entreprise">
+
+                <h:panelGrid columns="6" cellpadding="10" cellspacing="10" >
+
+                    <pri:outputLabel value="Entreprise:" for="idUtilisateurE" />
+                    <pri:selectOneListbox filter="true"  scrollHeight="100" styleClass="idUtilisateurE"  
+                                          style="width: 200px"  id="idUtilisateurE" converter="omnifaces.SelectItemsConverter" 
+                                          value="#{demandeBean.formObject.idUtilisateurE}" required="true" requiredMessage="The IdUtilisateurE field is required.">
+                        <!--<f:selectItem itemLabel="selectionner une entreprise" itemValue="" noSelectionOption="true" />-->
+                        <f:selectItems value="#{demandeBean.entrepriseList}" var="i" itemLabel="#{i.nomE}" itemValue="#{i}" />
+                        <pri:ajax event="change" process="@this @(.idUtilisateurE)" update="@(.service,.produit)" listener="#{demandeBean.comboRemplirService()}"/>
+                    </pri:selectOneListbox>
+
+                    <pri:outputLabel value="Service:" for="service" />
+                    <pri:selectOneListbox   filter="true"  scrollHeight="100" styleClass="service" 
+                                            style="width: 200px"  id="service" converter="omnifaces.SelectItemsConverter" 
+                                            value="#{demandeBean.formObject.codeService}" required="true" 
+                                            requiredMessage="The IdUtilisateurE field is required.">
+                        <!--<f:selectItem itemLabel="selectionner un service" itemValue="" noSelectionOption="true"/>-->
+                        <f:selectItems value="#{demandeBean.serviceFiltre}"   var="u" itemLabel="#{u.nomService}"  itemValue="#{u}" />
+                        <pri:ajax event="change" process="@this @(.service)" update="@(.poste)" listener="#{demandeBean.comboRemplirPoste()}"/>
+                    </pri:selectOneListbox>
+
+                    <pri:outputLabel value="Produit:" for="produit" />
+                    <pri:selectOneListbox   filter="true"  scrollHeight="100" styleClass="produit" 
+                                            style="width: 200px"  id="produit" converter="omnifaces.SelectItemsConverter" 
+                                            value="#{demandeBean.formObject.codeProduit}" required="true" 
+                                            requiredMessage="The IdUtilisateurE field is required.">
+                        <!--<f:selectItem itemLabel="selectionner un service" itemValue="" noSelectionOption="true"/>-->
+                        <f:selectItems value="#{demandeBean.produitFiltre}"   var="u" itemLabel="#{u.nomProduit}"  itemValue="#{u}" />
+                    </pri:selectOneListbox>
+
+
+                    <pri:outputLabel value="Poste:" for="poste" />
+                    <pri:selectOneListbox   filter="true"  scrollHeight="100" styleClass="poste" 
+                                            style="width: 200px"  id="poste" converter="omnifaces.SelectItemsConverter" 
+                                            value="#{demandeBean.formObject.codePoste}" required="true" 
+                                            requiredMessage="The IdUtilisateurE field is required.">
+                        <!--<f:selectItem itemLabel="selectionner un service" itemValue="" noSelectionOption="true"/>-->
+                        <f:selectItems value="#{demandeBean.posteFiltre}"   var="u" itemLabel="#{u.nomPoste}"  itemValue="#{u}" />
+                    </pri:selectOneListbox>
+
+
+
+                    <pri:outputLabel value="type demande:" for="typeDemande" />
+                    <h:selectOneMenu style="width: 250px" 
+                                     id="typeDemande" value="#{demandeBean.formObject.idTypeDemande}" >
+                        <f:selectItem itemLabel="selectionner un type produit"  itemValue="" noSelectionOption="true"/>
+                        <f:selectItems  value="#{demandeBean.typedemandeList}"  
+                                        var="iu" itemLabel="#{iu.libTypeDemande}" itemValue="#{iu}" />
+                    </h:selectOneMenu>
+
+                    <pri:outputLabel value="requete:" for="requete" />
+                    <pri:inputTextarea  placeholder="faites votre demande" id="requete" value="#{demandeBean.formObject.libelleDemande}" title="utilisateur du poste" />
+
+
+
+                    <center>
+                        <h:panelGrid columns="2" cellpadding="10" cellspacing="10">
+                            <pri:commandButton value="Valider"  id="withIcon" icon="ui-icon-disk"  update="form" actionListener="#{demandeBean.enregistrer()}" styleClass="ui-priority-primary" />
+                            <pri:commandButton value="Annuler" id="annuler" icon="ui-icon-star" update="@(.entreprise)"  actionListener="#{demandeBean.rafraichir()}"  />
+                        </h:panelGrid>
+                    </center>
+
+
+                </h:panelGrid>
+            </pri:panel>
+
+
+            <pri:dataTable id="tbl" var="item" value="#{demandeBean.demandeList}" scrollable="true" paginatorPosition="top"
+                           paginator="true" rows="4"  emptyMessage="Aucune demande"
+                           selectionMode="single" selection="#{demandeBean.selectObject}" rowKey="#{item.idDemande}" styleClass="data"
+                           resizableColumns="true" style="font-size: inherit" >
+
+                <pri:ajax event="rowDblselect" update="@(.entreprise)" listener="#{demandeBean.rowSelect()}"/>
+
+                <f:facet name="header">
+                    <h:outputText value="Liste des demandes" style="font-family: Gill, Helvetica, sans-serif;
+                                  font-size: 20px; font-style: normal; color: white"/>
+                </f:facet>
+
+                <pri:column filterBy="#{item.idDemande}" sortBy="#{item.idDemande}">
+                    <f:facet name="header">
+                        <h:outputText value="id" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.idDemande}" > </h:outputText>
+                    </center>
+                </pri:column>
+
+                <pri:column filterBy="#{item.idUtilisateurE.nomE}" sortBy="#{item.idUtilisateurE.nomE}">
+                    <f:facet name="header">
+                        <h:outputText value="Entreprise"/>
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.idUtilisateurE.nomE}"  > </h:outputText>
+                    </center>
+                </pri:column>
+
+                <pri:column filterBy="#{item.codeService.nomService}" sortBy="#{item.codeService.nomService}">
+                    <f:facet name="header">
+                        <h:outputText value="Service" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.codeService.nomService}"  > </h:outputText>
+                    </center>
+                </pri:column>
+
+                <pri:column filterBy="#{item.codePoste.nomPoste}" sortBy="#{item.codePoste.nomPoste}">
+                    <f:facet name="header">
+                        <h:outputText value="Poste" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.codePoste.nomPoste}"  > </h:outputText>
+                    </center>
+                </pri:column>
+
+                <pri:column filterBy="#{item.codeProduit.nomProduit}" sortBy="#{item.codeProduit.nomProduit}">
+                    <f:facet name="header">
+                        <h:outputText value="Produit" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.codeProduit.nomProduit}"  > </h:outputText>
+                    </center>
+                </pri:column>
+
+                <pri:column filterBy="#{item.idTypeDemande.libTypeDemande}" sortBy="#{item.idTypeDemande.libTypeDemande}">
+                    <f:facet name="header">
+                        <h:outputText value="Type demande" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.idTypeDemande.libTypeDemande}"  > </h:outputText>
+                    </center>
+                </pri:column>
+
+                <pri:column filterBy="#{item.libelleDemande}" sortBy="#{item.libelleDemande}">
+                    <f:facet name="header">
+                        <h:outputText value=" demande" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.libelleDemande}"  > </h:outputText>
+                    </center>
+                </pri:column>
+
+                <pri:column filterBy="#{item.etatDemande}" sortBy="#{item.etatDemande}">
+                    <f:facet name="header">
+                        <h:outputText value=" etat demande" />
+                    </f:facet>
+                    <center>
+                        <h:outputText value="#{item.etatDemande}"  > </h:outputText>
+                    </center>
+                </pri:column>
+
+            </pri:dataTable>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+

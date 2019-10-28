@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pri="http://primefaces.org/ui"
+                template="/common.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <div id="content-header">
+            <div id="breadcrumb"> 
+                <a href="index.xhtml" title="Aller à la page d'acceuil" class="tip-bottom"><i class="icon-home"></i> Acceuil</a>
+                <a href="#" title="G2I configuration" class="tip-bottom"><i class="icon-cogs"></i>Gestion des entreprises</a>
+                <a href="#" class="current">Gestion des Comptes entreprises</a>
+            </div>
+        </div>
+
+        <h:form id="form" styleClass="form">
+            <pri:growl id="growl" sticky="true" autoUpdate="true" life="0" globalOnly="true" />
+            <!--<pri:messages id="megs" autoUpdate="true" showDetail="true" closable="true" />-->
+
+            <pri:panel id="basic"  header="Formulaire de gestion des comptes entreprises"
+                       footer="Formulaire de gestion des comptes entreprises" styleClass="entreprise" >
+
+                <!--<h:panelGrid columns="2" cellpadding="5" cellspacing="50">-->
+                    <pri:wizard flowListener="#{entrepriseBean.onFlowProcess}" style="width: 700px">
+
+                        <pri:tab id="personal" title="Information"  >
+                            <pri:panel header="Spécification de l'entreprise">
+                                <pri:messages />
+
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <h:panelGrid columns="1" cellpadding="10" cellspacing="0">
+                                                <pri:outputLabel value="Nom:" for="cache" />
+                                                <pri:inputText placeholder="nom de l'entreprise" id="cache"   value="#{entrepriseBean.formObject.nomE}" 
+                                                               style="width: 500px" required="true" 
+                                                               requiredMessage="Veuillez renseigner correctement le nom de l'entreprise!">
+                                                    <f:validateLength minimum="3" maximum="100" />
+                                                </pri:inputText>
+                                            </h:panelGrid>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <h:panelGrid columns="2" cellpadding="10" cellspacing="10">
+                                                <pri:outputLabel value="Est sous contrat:" />
+                                                <pri:selectBooleanCheckbox value="#{entrepriseBean.formObject.estSousContrat}"  style="width: 150%" />
+                                            </h:panelGrid>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <h:panelGrid columns="2" cellpadding="10" cellspacing="10">
+                                                <pri:outputLabel value="Aller à la Validation : " style="color: #df8505" />
+                                                <pri:selectBooleanCheckbox value="#{entrepriseBean.skip}" />
+                                            </h:panelGrid>
+
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                            </pri:panel>
+                        </pri:tab>
+                        <!--p1-->
+                        <pri:tab id="address" title="Addresse">
+                            <pri:panel header="Détails de l'adresse">
+                                <pri:messages />
+                                <table>
+
+                                    <tr>
+                                        <pri:outputLabel value="Adresse:" for="adresse" />
+                                        <pri:inputText  placeholder="emplacement de l'entreprise" id="adresse"  style="width: 500px" 
+                                                        value="#{entrepriseBean.formObject.adresseE}"  
+                                                        />
+                                    </tr>
+
+                                    <tr>
+                                        <pri:outputLabel value="Email:" for="email" />
+                                        <pri:inputText placeholder="ex:jorjinho@gmail.com" id="email"  style="width: 500px" 
+                                                       value="#{entrepriseBean.formObject.emailE}" required="true"  />
+                                    </tr>
+
+                                    <tr>
+                                        <pri:outputLabel value="Contact:" for="contacts" />
+                                        <pri:inputText placeholder="ex:92-20-20-20/22-25-52-20" style="width: 500px" 
+                                                       id="contacts" value="#{entrepriseBean.formObject.contactE}"  required="true" 
+                                                       requiredMessage="Veuillez saisir correctement le contact!">
+                                            <f:validateLength minimum="11" maximum="11"/>
+                                        </pri:inputText>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <h:panelGrid columns="2" cellpadding="10" cellspacing="10">
+                                                <pri:outputLabel value="Aller à la Validation : "  style="color: #df8505"/>
+                                                <pri:selectBooleanCheckbox value="#{entrepriseBean.skip}" />
+                                            </h:panelGrid>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </pri:panel>
+                        </pri:tab>
+
+                        <pri:tab id="contact" title="Compte Entreprise">
+                            <pri:panel header="Information sur le compte">
+                                <pri:messages />
+                                <table>
+                                    <tr>
+                                        <pri:outputLabel value="Login:" for="login" />
+                                        <pri:inputText placeholder="identifiant de l'entreprise" style="width: 500px" 
+                                                       id="login"  value="#{entrepriseBean.formObject.loginE}" required="true" 
+                                                       requiredMessage="Veuillez attribuer un bon identifiant!">
+                                            <f:validateLength minimum="6" maximum="100"/>
+                                        </pri:inputText>
+                                    </tr>
+                                    <tr>
+                                        <h:panelGrid columns="2" cellpadding="10" cellspacing="10">
+                                            <pri:outputLabel value="Est Actif:" />
+                                            <pri:selectBooleanCheckbox value="#{entrepriseBean.formObject.actifE}" style="width: 150%"  />
+                                        </h:panelGrid>
+                                    </tr>
+                                </table>
+                            </pri:panel>
+                        </pri:tab>
+
+                        <br/>
+                        <pri:tab id="confirm" title="Confirmation">
+                            <pri:panel header="Confirmation">
+                                <!--<h:panelGrid>-->
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <h:outputText value="Nom: " />
+                                        </td>
+                                        <td width="20%"></td>
+                                        <td>
+                                            <h:outputText value="#{entrepriseBean.formObject.nomE}" styleClass="outputLabel"/>
+                                        </td>
+                                    </tr>
+                                    <!--<br/>-->
+
+                                    <tr>
+                                        <td>
+                                            <h:outputText value="Est sous contrat: " />
+                                        </td>
+                                        <td width="20%"></td>
+                                        <td>
+                                            <h:outputText value="#{entrepriseBean.formObject.estSousContrat}" styleClass="outputLabel"/>
+                                        </td>
+                                    </tr>
+                                    <!--<br/>-->
+
+
+                                    <tr>
+                                        <td>
+                                            <h:outputText value="Adresse: " />
+                                        </td>
+                                        <td width="20%"></td> 
+                                        <td>
+                                            <h:outputText value="#{entrepriseBean.formObject.adresseE}" styleClass="outputLabel"/>
+                                        </td>
+                                    </tr>
+                                    <!--<br/>-->
+                                    <tr>
+                                        <td>
+                                            <h:outputText value="Email: " />
+                                        </td>
+                                        <td width="20%"></td>
+                                        <td>
+                                            <h:outputText value="#{entrepriseBean.formObject.emailE}" styleClass="outputLabel"/>
+                                        </td>
+                                    </tr>
+                                    <!--<br/>-->
+
+                                    <tr>
+                                        <td>
+                                            <h:outputText value="Contact: " />
+                                        </td>
+                                        <td width="20%"></td>
+                                        <td>
+                                            <h:outputText value="#{entrepriseBean.formObject.contactE}" styleClass="outputLabel"/>
+                                        </td>   
+                                    </tr>
+                                    <!--<br/>-->
+                                    <tr>
+                                        <td>
+                                            <h:outputText value="Login: " />
+                                        </td>
+                                        <td width="20%"></td>
+                                        <td>
+                                            <h:outputText value="#{entrepriseBean.formObject.loginE}" styleClass="outputLabel"/>
+                                        </td>
+                                    </tr>
+                                    <!--<br/>-->
+
+                                    <tr>
+                                        <td>
+                                            <h:outputText value="Est actif: " />
+                                        </td>
+                                        <td width="20%"></td>
+                                        <td>
+                                            <h:outputText value="#{entrepriseBean.formObject.actifE}" styleClass="outputLabel"/>
+                                        </td>
+                                    </tr>
+                                    <br/>
+                                    <h:panelGrid columns="2" cellpadding="10" cellspacing="10">
+                                        <pri:commandButton  value="Valider" id="valide"  process="@this" update="form" actionListener="#{entrepriseBean.enregistrer()}" styleClass="ui-priority-primary" />
+                                        <pri:commandButton value="Annuler" id="annuler"  update="form" actionListener="#{entrepriseBean.rafraichir()}"  />
+
+                                    </h:panelGrid>
+                                </table>
+                                <!--</h:panelGrid>-->
+                            </pri:panel>
+                        </pri:tab>
+
+
+                        <!--p1-->
+                    </pri:wizard>
+                    
+                <br/>
+            </pri:panel>
+            <h:panelGrid columns="1" cellpadding="10">
+                <pri:dataTable id="tbl" var="item" value="#{entrepriseBean.entrepriseList}" scrollable="false" paginatorPosition="top"
+                               paginator="true" rows="4"  emptyMessage="Aucun compte entreprise"
+                               selectionMode="single" selection="#{entrepriseBean.selectObject}" rowKey="#{item.idUtilisateurE}" styleClass="data"
+                               resizableColumns="true" style="font-size: inherit" >
+
+                    <pri:ajax event="rowDblselect" update="@(.entreprise)" listener="#{entrepriseBean.rowSelect()}"/>
+
+                    <f:facet name="header">
+                        <h:outputText value="Liste des comptes entreprises" style="font-family: Gill, Helvetica, sans-serif;
+                                      font-size: 20px; font-style: normal; color: #ffffff"/>
+                    </f:facet>
+
+                    <pri:column filterBy="#{item.idUtilisateurE}" sortBy="#{item.idUtilisateurE}">
+                        <f:facet name="header">
+                            <h:outputText value="id" />
+                        </f:facet>
+                        <center>
+                            <h:outputText value="#{item.idUtilisateurE}" > </h:outputText>
+                        </center>
+                    </pri:column>
+
+                    <pri:column filterBy="#{item.nomE}" sortBy="#{item.nomE}">
+                        <f:facet name="header">
+                            <h:outputText value="Nom" />
+                        </f:facet>
+                        <center>
+                            <h:outputText value="#{item.nomE}" > </h:outputText>
+                        </center>
+                    </pri:column>
+
+                    <pri:column filterBy="#{item.adresseE}" sortBy="#{item.adresseE}">
+                        <f:facet name="header">
+                            <h:outputText value="Adresse"/>
+                        </f:facet>
+                        <center>
+                            <h:outputText value="#{item.adresseE}"  > </h:outputText>
+                        </center>
+                    </pri:column>
+
+                    <pri:column filterBy="#{item.emailE}" sortBy="#{item.emailE}">
+                        <f:facet name="header">
+                            <h:outputText value="Email" />
+                        </f:facet>
+                        <center>
+                            <h:outputText value="#{item.emailE}"  > </h:outputText>
+                        </center>
+                    </pri:column>
+
+                    <pri:column filterBy="#{item.contactE}" sortBy="#{item.contactE}">
+                        <f:facet name="header">
+                            <h:outputText value="Contact" />
+                        </f:facet>
+                        <center>
+
+                            <h:outputText value="#{item.contactE}"  > </h:outputText>
+                        </center>
+                    </pri:column>
+
+                    <pri:column filterBy="#{item.loginE}" sortBy="#{item.loginE}">
+                        <f:facet name="header">
+                            <h:outputText value="Login" />
+                        </f:facet>
+                        <center>
+                            <h:outputText value="#{item.loginE}" />
+                        </center>
+                    </pri:column>
+
+                    <pri:column filterBy="#{item.motDePasseE}" sortBy="#{item.motDePasseE}">
+                        <f:facet name="header">
+                            <h:outputText value="PassWord" />
+                        </f:facet>
+                        <center>
+                            <h:outputText value="#{item.motDePasseE}" />
+                        </center>
+                    </pri:column>
+
+                    <pri:column filterBy="#{item.estSousContrat}" sortBy="#{item.estSousContrat}">
+                        <f:facet name="header">
+                            <h:outputText value="SousContrat" />
+                        </f:facet>
+                        <center>
+                            <h:outputText value="#{item.estSousContrat}" />
+                        </center>
+                    </pri:column>
+
+
+                    <pri:column filterBy="#{item.actifE}" sortBy="#{item.actifE}">
+                        <f:facet name="header">
+                            <h:outputText value="Actif" />
+                        </f:facet>
+                        <center>
+                            <h:outputText value="#{item.actifE}" />
+                        </center>
+                    </pri:column>
+                </pri:dataTable>
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+
